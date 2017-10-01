@@ -33,8 +33,12 @@ The method scans the entire X range of the image since vehicles were observed in
 
 I ended up deciding to use three scales to search for (64x64, 96x96, and 128x128).  I arrived at these values somewhat empirically.  I viewed the supplied test images and found what the scale of the vehicles in the image were.  These three scales were a good mix to capture vehicles in the near to middle range.  They were also large enough that the runtime wasn't serverely impacted due to the creation of many small windows.  The window sizes were also have the same aspect ratio as the original training images.
 
+I also adjusted the overlapping percentages from the default (50%) to 75%.  This was in response to missing some detections of vehicles at a medium distance.  It seems the patch would slide too far between iterations and miss the vehicle.
+
 # False Positive Reduction
 In order to avoid false positives I added a method of combining multiple overlapping detections using a 'heatmap'.  The heatmap method counts the number of detections for a region of the image, and then applies a threshold function to filter out regions that have a number of detections less than the threshold.  Once the heatmap was thresholded, I used the scipy.ndimage.measurements.label function to create a bounding box to the remaining heatmap regions.
+
+For the video, I also added a function to accumulate the heatmaps over a series of frames, add them together, and then apply the threshold.  This served to minimize the impact of spurious detections that lasted only a single frame.
 
 # Discussion
 The main challenge I faced in this project was an oversight in the difference of range for PNG and JPG images.  Due to training on PNG images and then using JPG images for the video I found my detector performing terribly.  Once I realized the difference and scaled the JPG values from a range of (0-255) to a range of (0-1) things looked much better.
