@@ -47,6 +47,8 @@ For the video, I also added a function to accumulate the heatmaps over a series 
 Here are some examples of the pipeline in action using the supplied test images.
 ![Examples of detections](./examples/test_image_results.jpg)
 
+You can see that there is a false-negative in one of the images.  This will be addressed later in the video by aggregating multiple frames together, we can use a less restrictive threshold.
+
 # Project Video
 Here is a link to the pipeline being a applied to the [project video](./test_video_output.mp4).
 
