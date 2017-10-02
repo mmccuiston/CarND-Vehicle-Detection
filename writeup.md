@@ -45,7 +45,7 @@ For the video, I also added a function to accumulate the heatmaps over a series 
 
 # Single Frame Examples
 Here are some examples of the pipeline in action using the supplied test images.
-[Examples of detections](./examples/test_image_results.jpg)
+![Examples of detections](./examples/test_image_results.jpg)
 
 # Project Video
 Here is a link to the pipeline being a applied to the [project video](./test_video_output.mp4).
